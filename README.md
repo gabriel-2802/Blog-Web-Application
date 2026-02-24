@@ -1,39 +1,80 @@
-# Blog Backend Application
+# Blog Web App
 
-## Description
-* This is a backend application for a personal blog website
-* It allows twwo types of users: Admin and Regular
-* Admins can create, update, and delete blog posts
-* Regular users can only view blog posts and leave comments on them
-* The users can also view the comments left by other users and update or delete their own comments
+A full-stack blog application with a **Spring Boot** REST API backend and a **React** frontend. Supports role-based access control — **Admin** users can publish, edit, and delete posts, while **Regular** users can browse content and interact through comments.
 
-## Technologies
-* ```Spring Boot``` for the backend
-* ```Spring Data JPA``` for the database
-* ```Spring Security``` for the authentication and authorization
-* ```JWT``` for the token-based authentication
-* ```PostgreSQL``` for the database
-* ```Maven``` for the project management
-* ```Docker``` for the database
-* ```Spring MVC``` for the RESTful API
+---
 
-## API Endpoints
-* ```/auth/register``` - POST - Register a new user
-* ```/auth/login``` - POST - Login a user
-* ```/account/info/{username}``` - GET - Get the user's account details
-* ```/account/update/{username}``` - PUT - Update the user's account details
-* ```/account/delete/{username}``` - DELETE - Delete the user's account
-* ```/posts/create``` - POST - Create a new blog post
-* ```/posts/update/{id}``` - PUT - Update a blog post
-* ```/posts/delete/{id}``` - DELETE - Delete a blog post
-* ```/posts/find/{id}``` - GET - View a blog post
-* ```/posts/all``` - GET - View all blog posts
-* ```/posts/categories``` - GET - View all blog post categories
-* ```/posts/category/{category}``` - GET - View all blog posts in a category
-* ```/comment/create/{postId}&&{username}``` - POST - Create a new comment
-* ```/comment/update/{id}``` - PUT - Update a comment
-* ```/comment/delete/{id}``` - DELETE - Delete a comment
+## Architecture
 
+```
+Spring-Blog-Backend/
+├── backend/   
+└── frontend/ 
+```
 
-## Notes
-* The application has a built in front-end using React.js at the following link: https://github.com/gabriel-2802/React-Blog-Frontend
+---
+
+## Features
+
+- **JWT Authentication** — register, login, and receive a signed token (7-day expiry, HS512)
+- **Role-Based Access** — `ADMIN` and `USER` roles; admin-only post management enforced via `@PreAuthorize`
+- **Blog Posts** — full CRUD with title, content, author, image (Base64), date, and category
+- **Categories** — posts are classified as `LOVE_POEMS`, `STATEMENTS`, `QUOTES`, or `POEMS`
+- **Comments** — authenticated users can create, edit, and delete their own comments
+- **User Profiles** — profile picture (Base64), email, and account management
+- **Stateless Sessions** — no server-side session; all auth is token-based
+---
+
+## API Reference
+
+### Authentication (`/auth`)
+
+| Method | Endpoint | Auth | Description |
+|---|---|---|---|
+| `POST` | `/auth/register` | ✗ | Register a new user |
+| `POST` | `/auth/login` | ✗ | Login and receive a JWT |
+
+### Posts (`/post`)
+
+| Method | Endpoint | Auth | Description |
+|---|---|---|---|
+| `GET` | `/post/all` | ✗ | Get all posts |
+| `GET` | `/post/find/{id}` | ✗ | Get a single post by ID |
+| `GET` | `/post/categories` | ✗ | List all available categories |
+| `GET` | `/post/category/{category}` | ✗ | Get posts by category |
+| `POST` | `/post/create` | ADMIN | Create a new post |
+| `PUT` | `/post/update/{id}` | ADMIN | Update a post |
+| `DELETE` | `/post/delete/{id}` | ADMIN | Delete a post |
+
+### Comments (`/comment`)
+
+| Method | Endpoint | Auth | Description |
+|---|---|---|---|
+| `POST` | `/comment/create/{postId}&&{username}` | ✓ | Add a comment to a post |
+| `PUT` | `/comment/update/{commentId}` | ✓ | Edit a comment |
+| `DELETE` | `/comment/delete/{commentId}` | ✓ | Delete a comment |
+
+### Account (`/account`)
+
+| Method | Endpoint | Auth | Description |
+|---|---|---|---|
+| `GET` | `/account/info/{username}` | ✓ | Get user profile |
+| `POST` | `/account/update/{username}` | ✓ | Update user profile |
+| `DELETE` | `/account/delete/{username}` | ✓ | Delete user account |
+
+---
+
+## Frontend Pages
+
+| Route | Page | Description |
+|---|---|---|
+| `/` | Home | Browse all posts with sidebar |
+| `/post/:postId` | Single Post | View full post with comments |
+| `/write` | Write | Create a new post (admin only) |
+| `/post/edit/:postId` | Edit Post | Edit an existing post (admin only) |
+| `/login` | Login | User login form |
+| `/register` | Register | User registration form |
+| `/profile` | Profile | View and manage user profile |
+| `/*` | 404 | Not found fallback |
+
+---

@@ -1,0 +1,105 @@
+.profile {
+    display: flex;
+    width: 100%;
+    height: 885px;
+  }
+  
+  .profileWrapper {
+    flex: 9;
+    padding: 20px;
+  }
+
+input {
+  background-color: inherit;
+  color: white;
+}
+  
+  
+  .profileForm {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .profilePP {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .profilePP > img {
+    height: 70px;
+    width: 70px;
+    border-radius: 20px;
+    object-fit: cover;
+  }
+  
+  .profilePPIcon {
+    width: 25px;
+    height: 25px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 50%;
+    margin-left: 10px;
+    background-color: rgb(148, 16, 148);
+    cursor: pointer;
+  }
+  
+  .profilePPButton:focus {
+    outline-style: none;
+  }
+  
+  .profileForm > label {
+    font-size: 20px;
+    margin-top: 20px;
+  }
+  
+  .profilePPInput {
+    width: 30%;
+  }
+  
+  .profileForm > input {
+    color: gray;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 30px;
+    border: none;
+    border-bottom: 1px solid lightgray;
+  }
+  
+button {
+    align-self: center;
+    width: 150px;
+    border: none;
+    border-radius: 10px;
+    color: black;
+    font-weight: bolder;
+    padding: 10px;
+    margin-top: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+    .profileDeleteButton {
+        background-color: rgb(252, 69, 103);
+    }
+
+    .profileSubmitButton {
+        background-color: rgb(148, 16, 148);
+    }
+
+  .profileError {
+    color: red;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .profileSuccess {
+    color: rgb(121, 240, 121);
+    margin-top: 10px;
+    text-align: center;
+  }
