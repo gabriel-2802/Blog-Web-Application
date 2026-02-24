@@ -1,17 +1,6 @@
 # Blog Web App
 
 A full-stack blog application with a **Spring Boot** REST API backend and a **React** frontend. Supports role-based access control — **Admin** users can publish, edit, and delete posts, while **Regular** users can browse content and interact through comments.
-
----
-
-## Architecture
-
-```
-Spring-Blog-Backend/
-├── backend/   
-└── frontend/ 
-```
-
 ---
 
 ## Features
